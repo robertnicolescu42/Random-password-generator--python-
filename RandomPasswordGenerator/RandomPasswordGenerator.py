@@ -5,27 +5,33 @@ import random
 def rand_word_gen(file,lang):
     myline = 0
     myline2 = 0
-    fileENG= open("wordsENG2.txt","r")
-    fileRO= open("wordsRO2.txt", "r")
-    lines = file.read().splitlines()
-    myline =random.choice(str(lines))
-    if lang==1:
+    cuvant1 = "none"
+    cuvant2 = "none2"
+
+    if lang=="1":
         #file2 = open("wordsENG2.txt", "r")
-        file2=fileENG
-    else:
+        file1=open("wordsENG.txt","r")
+        file2=open("wordsENG2.txt","r")
+    elif lang=="2":
         #file2 = open("wordsRO2.txt", "r")
-        file2=fileRO
+        file1=open("wordsRO.txt","r")
+        file2=open("wordsRO2.txt","r")
+
+    lines = file1.read().splitlines()
+    myline =random.choice(str(lines))
+
     lines2 = file2.read().splitlines()
 
     if rand_num_gen()%2 == 0:
-        myline.upper()
-
+        cuvant1 = str(myline.upper())
     if rand_num_gen()%3 == 0:
         myline2 = myline + random.choice(lines2)
     elif rand_num_gen()%3 == 1:
         myline2 = random.choice(lines2) + myline
     elif rand_num_gen()%3 == 2:
         myline2 = myline
+    cuvant2 = cuvant2 + str(myline2)
+    cuvant1 = cuvant1 + cuvant2
     return myline2
 
 def rand_symb_gen():
@@ -108,10 +114,6 @@ def genpass(answer,file,lang):
 
 def main():
     lang = input("EN/RO?")
-    #if lang==1:
-    #    file = open("wordsENG.txt", "r")
-    #else:
-    #    file = open("wordsRO.txt", "r")
     file1=open("wordsENG.txt","r")
     file2=open("wordsRO.txt","r")
     answer = input("Do you want a weak or strong password ? (1=weak, 2=strong) : ")
@@ -119,6 +121,8 @@ def main():
         print(genpass(answer,file1,lang))
     else:
         print(genpass(answer,file2,lang))
+    file1.close()
+    file2.close()
 
 
 if __name__== "__main__":
