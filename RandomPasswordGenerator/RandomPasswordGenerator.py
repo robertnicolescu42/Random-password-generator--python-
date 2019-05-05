@@ -5,8 +5,9 @@ import random
 def rand_word_gen(lang):
     myline = 0
     myline2 = 0
-    #myline1 = cuvant1
-    #myline2 = cuvant2
+    #myline1 is the first word
+    #myline2 is the second word
+    #we're adding the first word to myline2
     if lang=="1":
         file1=open("wordsENG.txt","r")
         file2=open("wordsENG2.txt","r")
@@ -92,8 +93,9 @@ def genpass(answer,lang):
         return passd
         if passcheck(passd)==1:
             return passd
+            print("passcheck passed!")
         else:
-            print("problema cu recursion!")
+            print("problema cu passcheck")
             genpass(answer,lang)
 
 #def main():
